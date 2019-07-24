@@ -1,0 +1,16 @@
+{
+  "groupId"         : "com.previred.notas",
+  "artifactId"      : "api-notas",
+  "artifactVersion" : "1.0.0",
+  "artifactDescription" : "Micro Servicio de prueva notas",
+  
+  "basePackage"     : "com.previred.notas",
+  "invokerPackage"  : "com.previred.notas.swagger",
+  "apiPackage"      : "com.previred.notas.swagger.codegen.api",
+  "modelPackage"    : "com.previred.notas.swagger.codegen.model",
+  "configPackage"   : "com.previred.notas.swagger.codegen.config",
+  "java8"           : true,
+  "title"           : "API Notas",
+  "hideGenerationTimestamp" : true,
+  "library"         : "spring-boot"
+}

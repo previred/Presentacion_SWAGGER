@@ -1,0 +1,161 @@
+swagger: '2.0'
+info:
+  description: "Prueba de API con Swagger. Implementación de CRUD de datos"
+  version: "1.0.0"
+  title: "API notas"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "mgonzalez@mmsoft.cl"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "127.0.0.1:8080"
+basePath: "/notas"
+tags:
+  - name: "nota"
+    description: "Operaciones CRUD de nota"
+schemes:
+  - "http"
+paths:
+  /version:
+    get:
+      tags:
+        - "version"
+      summary: "Detalle de la aplicacion"
+      operationId: "versionApp"
+      responses:
+        200:
+          description: "Detalle del API"
+          schema:
+            type: string
+  /nota:
+    post:
+      tags:
+        - "Notas"
+      summary: "Registra un nueva nota"
+      operationId: "IngresarNota"
+      consumes:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Nota que va a ser agregada al sistema"
+          required: true
+          schema:
+            $ref: "#/definitions/Nota"
+      responses:
+        200:
+          description: "Nota registrado en el sistema"
+        400:
+          description: "Los datos ingresados no son validos"
+    get:
+      tags:
+        - "Notas"
+      summary: "Encuentra el detalle de un Nota mediante su id"
+      operationId: "VerNota"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "query"
+          description: "Id del Nota a eliminar"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        200:
+          description: "Nota valido"
+          schema:
+            $ref: "#/definitions/Nota"
+        400:
+          description: "Los datos ingresados no son validos"
+    put:
+      tags:
+        - "Notas"
+      summary: "Actualiza los datos de un Nota"
+      operationId: "ActualizarNota"
+      consumes:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Nota que va a ser actualizado en el sistema"
+          required: true
+          schema:
+            $ref: "#/definitions/Nota"
+      responses:
+        200:
+          description: "Datos del Nota actualizados en el sistema"
+        400:
+          description: "Los datos ingresados no son validos"
+    delete:
+      tags:
+        - "Notas"
+      summary: "Elimina un Nota mediante su Id"
+      operationId: "EliminarNota"
+      parameters:
+        - name: "id"
+          in: "query"
+          description: "Id del Nota a eliminar"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        200:
+          description: "Nota eliminado"
+        400:
+          description: "Los datos ingresados no son validos"
+  /notas:
+    get:
+      tags:
+        - "Notas"
+      summary: "Encuentra el detalle de todas las Notas"
+      operationId: "VerNotas"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "offset"
+          in: "query"
+          description: "pagina a rescatar (empieza en 0)"
+          required: false
+          type: "integer"
+          format: "int32"
+        - name: "max"
+          in: "query"
+          description: "elementos a rescatar (por defecto 10)"
+          required: false
+          type: "integer"
+          format: "int32"       
+      responses:
+        200:
+          description: "Notas validas"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Nota"
+        400:
+          description: "Los datos ingresados no son validos"
+definitions:
+  Nota:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      titulo:
+        type: "string"
+        minLength: 2
+        maxLength: 100
+      comentario:
+        type: "string"
+        minLength: 2
+        maxLength: 100
+      fechaCreacion:
+        type: "string"
+        format: "date-time"
+      fechaActualizacion:
+        type: "string"
+        format: "date-time"
+externalDocs:
+  description: Especificación de swagger
+  url: 'https://swagger.io/docs/specification/about/'
