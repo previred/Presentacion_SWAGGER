@@ -15,7 +15,11 @@ Presentación en Formato pdf
 En el directorio SwaggerEjemplo se encuentra:
 
 -> SwaggerEjemplo
+
 	-README.md [paso a paso para la generación de cada parte (servidor, documentación, pruebas, etc.)]
+	
 	-> swagger
+	
 		- api_notas.yaml [Definición de la API Rest]
+		
 		- config.json [Configuración java para generar SpringBoot]
